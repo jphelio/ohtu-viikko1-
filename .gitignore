@@ -1,2 +1,4 @@
 /*.xxx
-target.*
+/target/*
+/target
+EOF
