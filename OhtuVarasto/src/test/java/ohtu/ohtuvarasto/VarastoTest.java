@@ -37,7 +37,23 @@ public class VarastoTest {
         // saldon pitäisi olla sama kun lisätty määrä
         assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
     }
+    
+    @Test
+    public void lisaysMaaraNegatiivinen(){
+        varasto.lisaaVarastoon(-2);
+        
+        // saldon pitäisi olla nolla, jos yritetään lisätä negatiivinen määrä
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
 
+    @Test
+    public void lisaysEiLisataLiikaa(){
+        varasto.lisaaVarastoon(20);
+        
+        // saldon pitäisi olla 10, vaikka lisätään 20
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
     @Test
     public void lisaysLisaaPienentaaVapaataTilaa() {
         varasto.lisaaVarastoon(8);
@@ -53,6 +69,24 @@ public class VarastoTest {
         double saatuMaara = varasto.otaVarastosta(2);
 
         assertEquals(2, saatuMaara, vertailuTarkkuus);
+    }
+    
+    @Test
+    public void eiOtetaNegatiivisiaMaaria(){
+        varasto.lisaaVarastoon(5);
+        varasto.otaVarastosta(-6);
+        
+        //Jos yritetään ottaa negatiivinen määrä, saldo pysyy samana
+        assertEquals(5, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otetaanKaikki(){
+        varasto.lisaaVarastoon(5);
+        varasto.otaVarastosta(10);
+        
+        //jos otetaan enemmän kuin saldo, varastoon jää saldoksi 0
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
