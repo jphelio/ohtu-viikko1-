@@ -86,7 +86,7 @@ public class VarastoTest {
         varasto.otaVarastosta(10);
         
         //jos otetaan enemmän kuin saldo, varastoon jää saldoksi 0
-        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
